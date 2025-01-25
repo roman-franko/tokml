@@ -56,11 +56,15 @@ export function toKML(
   style: Style | undefined,
   styleIdent: string | undefined
 ): string {
+  
+  const styleId = style
+    ? styleIdent || (Math.random() + 1).toString(36).substring(2)
+    : null;
+
   const children = featureCollection.features.flatMap((feature) =>
-    convertFeature(feature)
+    convertFeature(feature, styleId)
   );
 
-  const styleId = styleIdent || (Math.random() + 1).toString(36).substring(2);
   if (style) {
     children.unshift(createStyle(style, styleId));
   }
@@ -118,7 +122,7 @@ function folderMeta(meta: Folder["meta"]): Element[] {
   });
 }
 
-function convertFeature(feature: F, styleId?:string) {
+function convertFeature(feature: F, styleId?: string | null) {
   const { id } = feature;
   const idMember = ["string", "number"].includes(typeof id)
     ? {

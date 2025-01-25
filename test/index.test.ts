@@ -616,7 +616,7 @@ describe("toKML", () => {
       )
     ).toMatchInlineSnapshot(`
       "<kml xmlns=\\"http://www.opengis.net/kml/2.2\\"><Document><Style id=\\"test\\"><LineStyle><color>ff0000ff</color><width>2</width></LineStyle><PolyStyle><color>7f00ff00</color></PolyStyle></Style>
-      <Placemark>
+      <Placemark><styleUrl>#test</styleUrl>
       <ExtendedData>
         <Data name=\\"foo\\"><value>bar</value></Data></ExtendedData>
         <Polygon>
